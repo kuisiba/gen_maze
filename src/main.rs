@@ -42,7 +42,6 @@ fn parse(src: &str) -> u8 {
 
 fn main() {
     let opt = Opt::from_args();
-    eprintln!("opt.width: {:?}, opt.height: {:?}", opt.width, opt.height);
     let maze = maze::gen_maze(opt.width, opt.height);
     for i in maze.iter() {
         for j in i.iter() {

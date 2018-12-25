@@ -7,17 +7,34 @@ use structopt::StructOpt;
 struct Opt {
     //#[structopt(short = "i", long = "img")]
     //image: bool,
-    #[structopt(short = "w", long = "width")]
+    ///must be Odd number & 5 <= width <= 255
+    #[structopt(short = "w", long = "width", parse(from_str = "parse"))]
     width: u8,
 
-    #[structopt(short = "h", long = "height")]
+    ///must be Odd number & 5 <= height <= 255
+    #[structopt(short = "h", long = "height", parse(from_str = "parse"))]
     height: u8,
+}
+fn parse(src: &str) -> u8 {
+    match src.parse::<u8>() {
+        Ok(n) => {
+            if n % 2 == 1 {
+                n
+            } else {
+                eprintln!("error! width and height must be Odd number");
+                std::process::exit(1);
+            }
+        }
+        Err(e) => {
+            eprintln!("error! {}", e);
+            std::process::exit(1)
+        }
+    }
 }
 
 fn main() {
     let opt = Opt::from_args();
-    //eprintln!("{:?}", opt);
-    //hとwは奇数、かつ、5以上
+    eprintln!("opt.width: {:?}, opt.height: {:?}", opt.width, opt.height);
     let maze = maze::gen_maze(opt.width, opt.height);
     for i in maze.iter() {
         for j in i.iter() {

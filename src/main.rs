@@ -19,14 +19,22 @@ fn parse(src: &str) -> u8 {
     match src.parse::<u8>() {
         Ok(n) => {
             if n % 2 == 1 {
-                n
+                if n < 5 {
+                    eprintln!("error! number must be greater than 4");
+                    eprintln!("try --help");
+                    std::process::exit(1);
+                } else {
+                    n
+                }
             } else {
                 eprintln!("error! width and height must be Odd number");
+                eprintln!("try --help");
                 std::process::exit(1);
             }
         }
         Err(e) => {
             eprintln!("error! {}", e);
+            eprintln!("try --help");
             std::process::exit(1)
         }
     }

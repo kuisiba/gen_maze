@@ -1,7 +1,7 @@
 use gif::*;
 
 pub fn gen_gif(image: &mut std::fs::File, maze: &Vec<Vec<u8>>, scale: u8) {
-    let color_map = &[0xFF, 0xFF, 0xFF, 0x69, 0x69, 0x69];
+    let color_map = &[0xFF, 0xFF, 0xFF, 0xB0, 0xC4, 0xDE];
     let width = (maze[0].len() * scale as usize) as u16;
     let height = (maze.len() * scale as usize) as u16;
     let state = make_state(maze, scale);

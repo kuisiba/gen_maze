@@ -20,13 +20,8 @@ fn make_state(maze: &Vec<Vec<u8>>, scale: u8) -> Vec<u8> {
         for j in 0..maze[0].len() {
             for k in 0..scale {
                 for l in 0..scale {
-                    if maze[i][j] == 0 {
-                        powered_v[i * scale as usize + k as usize]
-                            [j * scale as usize + l as usize] = maze[i][j];
-                    } else {
-                        powered_v[i * scale as usize + k as usize]
-                            [j * scale as usize + l as usize] = maze[i][j];
-                    }
+                    powered_v[i * scale as usize + k as usize][j * scale as usize + l as usize] =
+                        maze[i][j];
                 }
             }
         }

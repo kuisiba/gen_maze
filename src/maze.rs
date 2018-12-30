@@ -20,7 +20,7 @@ pub fn gen_maze(w: u8, h: u8) -> Vec<Vec<u8>> {
     }
     let mut uf = UnionFind::new(room_count);
     //eprintln!("walls: {}", walls.len());
-    while walls.len() != 0 {
+    while !walls.is_empty() {
         let mut rng = thread_rng();
         let w_i = rng.gen_range(0, walls.len());
         let w_pos = walls[w_i];
@@ -67,8 +67,8 @@ impl UnionFind {
             rank.push(0);
         }
         UnionFind {
-            par: par,
-            rank: rank,
+            par,
+            rank,
         }
     }
     fn root(&mut self, x: usize) -> usize {
@@ -82,7 +82,7 @@ impl UnionFind {
         }
     }
     fn same(&mut self, x: usize, y: usize) -> bool {
-        return self.root(x) == self.root(y);
+        self.root(x) == self.root(y)
     }
     fn unite(&mut self, x: usize, y: usize) {
         let px = self.root(x);

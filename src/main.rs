@@ -62,7 +62,7 @@ fn main() {
             for j in i.iter() {
                 print!("{:?}", j);
             }
-            println!("");
+            println!();
         }
     } else {
         let mut image = std::fs::File::create("./maze.gif").unwrap();
